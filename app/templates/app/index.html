@@ -7,6 +7,9 @@
         {% for post in post_data%}
         <div class="card mb-4">
             <div class="card-body">
+                {% if post.image%}
+                <img src="{{post.image.url}}" alt="" class="card-img-top index-img">
+                {% endif%}
                 <h2 class="card-title">{{post.title}}</h2>
                 <p class="card-text">{{post.content |truncatechars:100}}</p>
                 <div class="btn btn-warning">詳細</div>

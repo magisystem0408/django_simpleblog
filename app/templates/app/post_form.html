@@ -6,12 +6,18 @@
   <h2>投稿</h2>
 </div>
 
-<form method="post">
+<!--画像アップロードするときに必要になる-->
+<!--enctype="multipart/form-data"-->
+<form method="post" enctype="multipart/form-data">
   {%csrf_token%}
 
   <div class="formpost">
     {%　render_field form.title class="form-control" placeholder="タイトルをマムシ"%}
   </div>
+  <div class="formpost">
+    {{form.image}}
+  </div>
+
   <div class="formpost">
     {%　render_field form.content class="form-control" placeholder="猫になる"%}
   </div>

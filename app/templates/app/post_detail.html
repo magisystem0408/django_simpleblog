@@ -6,6 +6,10 @@
 <hr>
 <p>{{post_data.created}} by {{post_data.auther}}</p>
 <hr>
+{% if post_data.image%}
+<img src="{{post_data.image.url}}" alt="" class="rounded detail-img">
+{% endif%}
+
 <p>{{post_data.content}}</p>
 
 {%if user.is_authenticated%}
