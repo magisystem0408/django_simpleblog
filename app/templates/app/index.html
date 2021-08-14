@@ -4,13 +4,18 @@
 
 <div class="row my-4">
     <div class="col-md-8">
+        {% if keyword%}
+        <h4 class="mb-4">{{keyword}}の検索結果</h4>
+        {% endif%}
+
+
         {% for post in post_data%}
         <div class="card mb-4">
             <div class="card-body">
                 {% if post.image%}
                 <img src="{{post.image.url}}" alt="" class="card-img-top index-img">
                 {% endif%}
-                <h2 class="card-title">{{post.title}}</h2>
+                <h2 class="card-title">{{post.title}} <span class="small">- {{post.category}}</span> </h2>
                 <p class="card-text">{{post.content |truncatechars:100}}</p>
                 <div class="btn btn-warning">詳細</div>
             </div>
@@ -20,6 +25,40 @@
             <a href="{% url 'post_detail' post.id %}" class="stretched-link"></a>
         </div>
         {% endfor %}
+
+        <div class="card my-4">
+            <h5 class="card-header">カテゴリ</h5>
+            <div class="body px-3 pt-3">
+                <div class="row">
+                    {% for category in category_data %}
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="{%url 'category' category%}">
+                                    {{category.name}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endfor%}
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <h5 class="card-header">検索</h5>
+            <div class="card-body">
+                <form method="get" action="{% url 'search'%}" class="input-group">
+                    <input type="text" class="form-control" name="keyword" placeholder="検索">
+
+                    <button class="btn btn-warning ml-2" type="submit">
+                        検索
+                    </button>
+
+
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
