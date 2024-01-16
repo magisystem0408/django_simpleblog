@@ -129,7 +129,7 @@ class SearchView(View):
         keyword = request.GET.get('keyword')
 
         if keyword:
-            exclusion_list = set([' ', '　'])
+            exclusion_list = {' ', '　'}
             query_list = ''
             for word in keyword:
                 if not word in exclusion_list:
